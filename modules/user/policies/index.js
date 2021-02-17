@@ -16,7 +16,6 @@ const register = Joi.object().keys({
       'string.base': 'email should be a string.'
     }),
   password: Joi.string()
-    .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
     .messages({
       'any.required': 'password is required.',
       'string.base': 'password should be a string.'
@@ -27,7 +26,7 @@ const register = Joi.object().keys({
         'any.required': 'address is required.',
         'string.base': 'address should be a string.'
       }),
-  geoDetails: Joi.array().items(Joi.string()).length(2).required().messages({
+  geoDetails: Joi.array().items(Joi.number()).length(2).required().messages({
     'any.required': 'Coordinates should be an array of latitiude and longitude values.',
     'array.base': 'geoDetails should be an array.'
   }),
@@ -41,7 +40,6 @@ const login = Joi.object().keys({
       'string.base': 'email should be a string.'
     }),
   password: Joi.string()
-    .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
     .messages({
       'any.required': 'password is required.',
       'string.base': 'password should be a string.'

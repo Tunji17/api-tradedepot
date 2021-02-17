@@ -4,17 +4,24 @@ const ProductSchema = new mongoose.Schema({
   name: {
     type: String, lowercase: true, trim: true,
   },
+  maxDistance: Number,
+  address: String,
+  image: String,
   location: {
     type: {
       type: String,
-      enum: ['Polygon'],
+      enum: ['Point'],
       required: true
     },
     coordinates: {
-      type: [[[Number]]],
+      type: [Number],
       required: true
     }
-  }
+  },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+  },
 }, { timestamps: true });
 
 ProductSchema.index({
