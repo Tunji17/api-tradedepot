@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const firebase = require('firebase-admin');
 const { sendJSONResponse, uploadImageToStorage, sendMail } = require('../../../utils');
-const serviceAccount = require('../../../config/firebase.json');
+const serviceAccount = require('../../../config/firebase');
 
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount)
@@ -26,6 +26,7 @@ const create = async (req, res) => {
   if (image) {
     uploadImage = await uploadImageToStorage(image)
   }
+  // console.log('wayooo');
   product.name = name;
   product.maxDistance = distanceInMeters;
   product.address = address;

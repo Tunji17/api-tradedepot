@@ -27,8 +27,10 @@ const rootDir = () => {
 
 
 const storage = new Storage({
-  keyFilename: `${rootDir()}/config/firebase.json`,
+  keyFilename: `${rootDir()}/config/firebase.js`,
 });
+// console.log('yeahhh');
+// console.log(`${rootDir()}/config/firebase.js`);
 
 const bucket = storage.bucket("misc-project-305017-sx203");
 
