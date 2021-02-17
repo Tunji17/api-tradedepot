@@ -1,5 +1,6 @@
 const path = require('path');
 const bunyan = require('bunyan');
+const mailgun = require("mailgun-js");
 const { Storage } = require('@google-cloud/storage');
 const config = require('../config');
 
@@ -45,10 +46,22 @@ const uploadImageToStorage = async (file) => {
     return `https://storage.googleapis.com/${bucket.name}/${newFileName}`;
 }
 
+
+const sendMail = async (data) => {
+  const mg = mailgun({apiKey: config.mailgun.apiKey, domain: config.mailgun.domain});
+  mg.messages().send(data, function (error, body) {
+    if (error) {
+      console.error(error)
+    }
+    console.log(body);
+  });
+}
+
 module.exports = {
   sendJSONResponse,
   catchErrors,
   logger,
   rootDir,
   uploadImageToStorage,
+  sendMail,
 };

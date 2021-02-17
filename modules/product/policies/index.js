@@ -29,6 +29,30 @@ const create = Joi.object().keys({
     }),
 });
 
+
+const createComments = Joi.object().keys({
+  body: Joi.string()
+    .min(3)
+    .max(300)
+    .required()
+    .messages({
+      'any.required': 'body is required.',
+      'string.base': 'body should be a string.'
+    }),
+    productId: Joi.string()
+    .required()
+    .messages({
+      'any.required': 'productId is required.',
+      'string.base': 'productId should be a string.'
+    }),
+    commentId: Joi.string()
+    .messages({
+      'any.required': 'commentId is required.',
+      'string.base': 'commentId should be a string.'
+    }),
+});
+
 module.exports = {
   create,
+  createComments,
 }

@@ -5,7 +5,8 @@ const policy = require('../policies');
 const controller = require('../controllers')
 const router = express.Router();
 
-router.post('/',catchErrors(authenticate), validateSchema(policy.create), catchErrors(controller.create))
 router.get('/',catchErrors(authenticate), catchErrors(controller.read))
+router.post('/',catchErrors(authenticate), validateSchema(policy.create), catchErrors(controller.create))
+router.post('/comments',catchErrors(authenticate), validateSchema(policy.createComments), catchErrors(controller.createComments))
 
 module.exports = router
